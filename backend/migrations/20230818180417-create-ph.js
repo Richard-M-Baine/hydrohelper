@@ -1,16 +1,33 @@
 'use strict';
-/** @type {import('sequelize-cli').Migration} */
+
 module.exports = {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('phs', {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.createTable('LogEntries', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      number: {
-        type: Sequelize.DECIMAL
+      date: {
+        allowNull: false,
+        type: Sequelize.DATEONLY
+      },
+      time: {
+        allowNull: false,
+        type: Sequelize.TIME
+      },
+      ph: {
+        allowNull: false,
+        type: Sequelize.FLOAT
+      },
+      ppm: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
+      photograph: {
+        allowNull: true,
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -22,7 +39,8 @@ module.exports = {
       }
     });
   },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('phs');
+
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.dropTable('LogEntries');
   }
 };
