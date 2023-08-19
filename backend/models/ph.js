@@ -15,7 +15,6 @@ module.exports = (sequelize, DataTypes) => {
   }
   LogEntrie.init({
     date: DataTypes.DATEONLY,
-    number: DataTypes.DECIMAL,
     time: DataTypes.TIME,
     ph: DataTypes.DECIMAL,
     ppm: DataTypes.INTEGER,
