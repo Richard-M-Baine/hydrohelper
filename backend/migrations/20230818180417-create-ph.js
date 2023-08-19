@@ -25,6 +25,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER
       },
+      temperature: {
+        allowNull: false,
+        type: Sequelize.FLOAT
+      },
       photograph: {
         allowNull: true,
         type: Sequelize.STRING

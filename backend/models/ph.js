@@ -13,8 +13,15 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  ph.init({
-    number: DataTypes.DECIMAL
+  LogEntrie.init({
+    date: DataTypes.DATEONLY,
+    number: DataTypes.DECIMAL,
+    time: DataTypes.TIME,
+    ph: DataTypes.DECIMAL,
+    ppm: DataTypes.INTEGER,
+    temperature: DataTypes.DECIMAL,
+    photograph: DataTypes.STRING
+
   }, {
     sequelize,
     modelName: 'LogEntrie',
