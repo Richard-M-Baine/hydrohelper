@@ -33,17 +33,30 @@ app.get('/logentries', async (req, res) => {
   }
 });
 
-app.post('/logentries', async (req, res) => {
+app.post('/logentries/post', async (req, res) => {
   try {
-    const { date, time, ph, ppm, temperature } = req.body;
+    // Extract data from the request body
+    const { date, time, ph, ppm, temperature, photograph } = req.body;
+console.log(date, time, ph, ppm, temperature)
+    // Create a new log entry in the database
+    const newLogEntry = await LogEntrie.create({
+      date,
+      time,
+      ph,
+      ppm,
+      temperature,
+      photograph
+    });
 
-    // Create a new log entry
-    const newLogEntry = await LogEntrie.create({ date, time, ph, ppm, temperature });
-
-    res.status(201).json(newLogEntry);
+    return res.status(201).json({
+      message: 'Log entry created successfully',
+      logEntry: newLogEntry
+    });
   } catch (error) {
-    console.error(error);
-    res.status(500).send('Server Error');
+    console.error('Error creating log entry:', error);
+    return res.status(500).json({
+      message: 'An error occurred while creating the log entry'
+    });
   }
 });
 
