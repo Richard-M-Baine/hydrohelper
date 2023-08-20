@@ -11,11 +11,15 @@ const rootReducer = combineReducers({
   ph: phReducer
 });
 
-let enhancer;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+const enhancer = composeEnhancers(
+  applyMiddleware(thunk) // Apply Redux Thunk middleware
+);
 
 const configureStore = (preloadedState) => {
-    return createStore(rootReducer, preloadedState, enhancer);
-  };
+  return createStore(rootReducer, preloadedState, enhancer);
+};
+
   
   export default configureStore;
