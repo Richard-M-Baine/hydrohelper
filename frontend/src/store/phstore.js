@@ -14,16 +14,15 @@ const getPHAction = (payload) => {
 export const fetchPhs = () => async dispatch => {
     const res = await fetch('/logentries');
     
-   
     if (res.ok) {
-        const groups = await res.json();
+        const logEntries = await res.json();
         
-       
-        dispatch(getPHAction(groups));
+        dispatch(getPHAction({ ph: logEntries })); // Dispatch with logEntries array
         
-        return groups;
+        return logEntries; // Return the array
     }
 }
+
 
 
 
@@ -35,10 +34,11 @@ const phReducer = (state = initialState, action) => {
     let newState = {}
     switch (action.type) {
         case GET_PH: {
+            const newState = { ...state }; // Create a shallow copy of the previous state
             action.payload.ph.forEach(event => {
-                newState[event.id] = event
-            })
-            return newState
+                newState[event.id] = event;
+            });
+            return newState;
         }
 
         default: {

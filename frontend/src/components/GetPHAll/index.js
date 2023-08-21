@@ -9,7 +9,7 @@ import { fetchPhs } from '../../store/phstore';
 
 function GetPhAll() {
   const [buttonClicked, setButtonClicked] = useState(false); // Step 2: Button clicked state
-
+  console.log(buttonClicked)
   const dispatch = useDispatch();
 
   // Step 3: useEffect to call fetchPhs when buttonClicked state changes
