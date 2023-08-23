@@ -5,7 +5,7 @@ import { Redirect, useHistory } from 'react-router-dom';
 import { Link, NavLink } from 'react-router-dom';
 
 
-
+import { createPHThunk } from '../../store/phstore';
 
 function CreatePostHomePHForm(){
     const history = useHistory()
@@ -42,6 +42,7 @@ function CreatePostHomePHForm(){
             
         }
        
+        dispatch(createPHThunk(newLogEntrie))
     }
 
         
